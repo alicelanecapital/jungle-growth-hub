@@ -1,29 +1,29 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { LandingView } from "@/components/jungle/landing/LandingView";
+import { DashboardView } from "@/components/jungle/dashboard/DashboardView";
+import { ViewSwitcher, type ViewMode } from "@/components/jungle/ViewSwitcher";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "The Jungle — The Peer Board for Main Street Businesses" },
+      { name: "description", content: "Affordable peer forums, operational templates, and a local board of advisors for South African MSMEs and SMEs." },
+      { property: "og:title", content: "The Jungle — The Peer Board for Main Street Businesses" },
+      { property: "og:description", content: "Affordable peer forums, operational templates, and a local board of advisors for South African MSMEs and SMEs." },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  const [view, setView] = useState<ViewMode>("landing");
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background text-foreground">
+      <div className="sticky top-0 z-40 flex justify-center border-b border-border/60 bg-background/85 px-4 py-3 backdrop-blur">
+        <ViewSwitcher value={view} onChange={setView} />
+      </div>
+      {view === "landing" ? <LandingView /> : <DashboardView />}
     </div>
   );
 }
