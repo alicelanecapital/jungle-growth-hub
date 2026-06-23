@@ -85,6 +85,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "The Jungle — The Peer Board for Main Street Businesses" },
+      { name: "twitter:description", content: "Affordable peer forums, operational templates, and a local board of advisors for South African MSMEs and SMEs." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/760f589a-9fb4-40a6-a2b0-42fcd6085bcc/id-preview-2bfaf60d--ca38d1dc-5331-4a53-8993-290ff27d97e1.lovable.app-1782212369541.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/760f589a-9fb4-40a6-a2b0-42fcd6085bcc/id-preview-2bfaf60d--ca38d1dc-5331-4a53-8993-290ff27d97e1.lovable.app-1782212369541.png" },
     ],
     links: [
       {
