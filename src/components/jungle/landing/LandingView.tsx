@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Logo } from "../Logo";
+import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   Check,
@@ -38,9 +39,10 @@ function Nav() {
           <a href="#how" className="hover:text-foreground transition">How It Works</a>
           <a href="#community" className="hover:text-foreground transition">The Community</a>
           <a href="#pricing" className="hover:text-foreground transition">Pricing</a>
+          <Link to="/apply" className="hover:text-foreground transition">Apply</Link>
         </nav>
-        <Button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-5">
-          Join the Network
+        <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-5">
+          <Link to="/apply">Join the Network</Link>
         </Button>
       </div>
     </header>
@@ -83,9 +85,12 @@ function Hero() {
           <Button
             size="lg"
             className="bg-ember-gradient text-white shadow-lg shadow-orange-500/20 hover:opacity-95 hover:shadow-xl rounded-full px-7 text-base transition-all hover:-translate-y-0.5"
+            asChild
           >
-            Apply to Join
-            <ArrowRight className="ml-1 h-4 w-4" />
+            <Link to="/apply">
+              Apply to Join
+              <ArrowRight className="ml-1 h-4 w-4" />
+            </Link>
           </Button>
           <Button
             size="lg"
@@ -291,9 +296,11 @@ function Pricing() {
               </li>
             ))}
           </ul>
-          <Button className="mt-8 w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all hover:-translate-y-0.5">
-            Apply to Join
-            <ArrowRight className="ml-1 h-4 w-4" />
+          <Button asChild className="mt-8 w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all hover:-translate-y-0.5">
+            <Link to="/apply">
+              Apply to Join
+              <ArrowRight className="ml-1 h-4 w-4" />
+            </Link>
           </Button>
           <p className="mt-4 text-center text-xs text-muted-foreground">
             Application reviewed within 48 hours.
