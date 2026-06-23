@@ -14,7 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      applications: {
+        Row: {
+          answers: Json
+          business_name: string | null
+          contact_email: string
+          contact_name: string | null
+          created_at: string
+          derived: Json
+          id: string
+          outcome: string
+          outcome_reasons: string[]
+          status: string
+          user_id: string | null
+        }
+        Insert: {
+          answers: Json
+          business_name?: string | null
+          contact_email: string
+          contact_name?: string | null
+          created_at?: string
+          derived?: Json
+          id?: string
+          outcome: string
+          outcome_reasons?: string[]
+          status?: string
+          user_id?: string | null
+        }
+        Update: {
+          answers?: Json
+          business_name?: string | null
+          contact_email?: string
+          contact_name?: string | null
+          created_at?: string
+          derived?: Json
+          id?: string
+          outcome?: string
+          outcome_reasons?: string[]
+          status?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
