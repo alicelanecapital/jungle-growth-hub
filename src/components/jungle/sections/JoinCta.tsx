@@ -5,8 +5,8 @@ import { DrawOnView } from "../botanicals/DrawOnView";
 export function JoinCta() {
   return (
     <section id="join" className="relative overflow-hidden border-t border-border/70 bg-primary text-primary-foreground">
-      <DrawOnView className="pointer-events-none absolute -right-24 -top-10 text-primary-foreground/25">
-        <MarulaBranch className="h-[520px] w-auto" />
+      <DrawOnView className="pointer-events-none absolute -right-16 -top-8 opacity-25">
+        <MarulaBranch className="h-[560px] w-auto invert brightness-125" />
       </DrawOnView>
       <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 gap-16 px-6 py-48 sm:px-10 md:grid-cols-12">
         <div className="md:col-span-8">

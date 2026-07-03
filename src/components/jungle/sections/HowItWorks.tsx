@@ -27,8 +27,10 @@ export function HowItWorks() {
             </p>
           </div>
         </div>
-        <DrawOnView className="hidden text-accent-gold md:block">
-          <Vine className="mb-8 h-10 w-full" />
+        <DrawOnView className="mb-10 hidden md:block">
+          <div className="relative h-[140px] w-full overflow-hidden">
+            <Vine className="absolute bottom-0 left-0 h-auto w-full object-cover object-bottom opacity-90" />
+          </div>
         </DrawOnView>
         <ol className="grid grid-cols-1 gap-x-10 gap-y-14 md:grid-cols-3 lg:grid-cols-6">
           {steps.map((s) => (

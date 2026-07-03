@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { PalmFrond } from "../botanicals/PalmFrond";
-import { Protea } from "../botanicals/Protea";
 import { DrawOnView } from "../botanicals/DrawOnView";
 
 export function Hero() {
@@ -35,9 +34,8 @@ export function Hero() {
         </div>
       </div>
       <div className="pointer-events-none relative md:col-span-5">
-        <DrawOnView className="relative flex h-full items-start justify-center text-primary">
-          <PalmFrond className="absolute -top-4 right-0 h-[520px] w-auto opacity-90" />
-          <Protea className="absolute bottom-0 left-0 h-[300px] w-auto text-accent-green opacity-90" />
+        <DrawOnView duration={1200} className="relative flex h-full w-full items-start justify-end">
+          <PalmFrond className="h-auto w-full max-w-[640px] translate-x-4 opacity-95 md:-translate-y-6" />
         </DrawOnView>
       </div>
     </section>

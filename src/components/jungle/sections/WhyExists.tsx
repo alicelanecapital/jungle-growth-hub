@@ -19,8 +19,8 @@ export function WhyExists() {
           </div>
         </div>
         <div className="hidden md:col-span-2 md:block">
-          <DrawOnView className="text-accent-green">
-            <LeafSprig className="ml-auto h-40 w-auto" />
+          <DrawOnView>
+            <LeafSprig className="ml-auto h-56 w-auto opacity-90" />
           </DrawOnView>
         </div>
       </div>

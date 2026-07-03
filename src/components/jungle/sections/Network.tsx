@@ -27,8 +27,8 @@ export function Network() {
             </ul>
           </div>
         </div>
-        <DrawOnView className="mt-24 text-accent-green">
-          <RootSystem className="h-40 w-full" />
+        <DrawOnView className="mt-24">
+          <RootSystem className="mx-auto h-auto w-full max-w-[1100px] opacity-95" />
         </DrawOnView>
       </div>
     </section>
