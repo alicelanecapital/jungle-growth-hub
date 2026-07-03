@@ -97,6 +97,7 @@
   --accent-gold: oklch(0.72 0.12 80);
   --accent-red: oklch(0.42 0.14 25);
   --accent-royal: oklch(0.45 0.16 260);
+  --accent-teal: oklch(0.86 0.035 200);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
   --border: oklch(0.87 0.008 70);
