@@ -19,10 +19,10 @@ export function AreYouAFit() {
 
   return (
     <section className="relative overflow-hidden border-t border-border/70">
-      <DrawOnView className="pointer-events-none absolute -top-16 -right-24 w-[26vw] min-w-[240px] max-w-[500px]">
-        <AccentPincushion className="h-auto w-full opacity-80" />
+      <DrawOnView className="pointer-events-none absolute -top-24 -right-32 w-[20vw] min-w-[200px] max-w-[380px]">
+        <AccentPincushion className="h-auto w-full opacity-25" />
       </DrawOnView>
-      <MarulaBranch className="pointer-events-none absolute -left-32 bottom-10 w-[24vw] max-w-[420px] opacity-[0.09]" />
+      <MarulaBranch className="pointer-events-none absolute -left-32 bottom-10 w-[24vw] max-w-[420px] opacity-[0.06]" />
       <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 gap-16 px-6 py-40 sm:px-10 md:grid-cols-12">
         <div className="md:col-span-2">
           <p className="text-xs uppercase tracking-[0.28em] text-muted-foreground"><span className="text-accent-teal">06</span> &nbsp;— &nbsp; Fit</p>
