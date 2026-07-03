@@ -16,41 +16,32 @@ export type Database = {
     Tables: {
       applications: {
         Row: {
-          answers: Json
-          business_name: string | null
+          business_name: string
           contact_email: string
-          contact_name: string | null
           created_at: string
-          derived: Json
+          founder_name: string
           id: string
-          outcome: string
-          outcome_reasons: string[]
+          responses: Json
           status: string
           user_id: string | null
         }
         Insert: {
-          answers: Json
-          business_name?: string | null
+          business_name: string
           contact_email: string
-          contact_name?: string | null
           created_at?: string
-          derived?: Json
+          founder_name: string
           id?: string
-          outcome: string
-          outcome_reasons?: string[]
+          responses: Json
           status?: string
           user_id?: string | null
         }
         Update: {
-          answers?: Json
-          business_name?: string | null
+          business_name?: string
           contact_email?: string
-          contact_name?: string | null
           created_at?: string
-          derived?: Json
+          founder_name?: string
           id?: string
-          outcome?: string
-          outcome_reasons?: string[]
+          responses?: Json
           status?: string
           user_id?: string | null
         }
