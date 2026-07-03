@@ -14,9 +14,9 @@ const steps = [
 export function HowItWorks() {
   return (
     <section id="how" className="relative overflow-hidden border-t border-border/70 bg-surface-muted">
-      <Vine className="pointer-events-none absolute -top-16 left-0 right-0 h-56 w-full object-cover object-bottom opacity-70" />
+      <Vine className="pointer-events-none absolute -top-24 left-0 right-0 h-56 w-full object-cover object-bottom opacity-20" />
       <DrawOnView className="pointer-events-none absolute -bottom-24 -right-20 w-72 max-w-[40vw]">
-        <AccentPincushion className="h-auto w-full opacity-75" />
+        <AccentPincushion className="h-auto w-full opacity-25" />
       </DrawOnView>
       <div className="mx-auto max-w-[1400px] px-6 py-40 sm:px-10">
         <div className="mb-20 grid grid-cols-1 gap-16 md:grid-cols-12">
