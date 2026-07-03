@@ -1,4 +1,5 @@
 import { Vine } from "../botanicals/Vine";
+import { AccentPincushion } from "../botanicals/AccentPincushion";
 import { DrawOnView } from "../botanicals/DrawOnView";
 
 const steps = [
@@ -12,11 +13,15 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section id="how" className="relative border-t border-border/70 bg-surface-muted">
+    <section id="how" className="relative overflow-hidden border-t border-border/70 bg-surface-muted">
+      <Vine className="pointer-events-none absolute -top-16 left-0 right-0 h-56 w-full object-cover object-bottom opacity-70" />
+      <DrawOnView className="pointer-events-none absolute -bottom-24 -right-20 w-72 max-w-[40vw]">
+        <AccentPincushion className="h-auto w-full opacity-75" />
+      </DrawOnView>
       <div className="mx-auto max-w-[1400px] px-6 py-40 sm:px-10">
         <div className="mb-20 grid grid-cols-1 gap-16 md:grid-cols-12">
           <div className="md:col-span-2">
-            <p className="text-xs uppercase tracking-[0.28em] text-muted-foreground">03 &nbsp;— &nbsp; How</p>
+            <p className="text-xs uppercase tracking-[0.28em] text-muted-foreground"><span className="text-accent-teal">03</span> &nbsp;— &nbsp; How</p>
           </div>
           <div className="md:col-span-8">
             <h2 className="font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.05] tracking-[-0.02em]">
@@ -27,15 +32,10 @@ export function HowItWorks() {
             </p>
           </div>
         </div>
-        <DrawOnView className="mb-10 hidden md:block">
-          <div className="relative h-[140px] w-full overflow-hidden">
-            <Vine className="absolute bottom-0 left-0 h-auto w-full object-cover object-bottom opacity-90" />
-          </div>
-        </DrawOnView>
-        <ol className="grid grid-cols-1 gap-x-10 gap-y-14 md:grid-cols-3 lg:grid-cols-6">
+        <ol className="relative grid grid-cols-1 gap-x-10 gap-y-14 md:grid-cols-3 lg:grid-cols-6">
           {steps.map((s) => (
             <li key={s.n} className="border-t border-border pt-6">
-              <div className="font-display text-sm text-accent-gold">{s.n}</div>
+              <div className="font-display text-sm text-accent-teal">{s.n}</div>
               <h3 className="mt-4 font-display text-xl font-medium">{s.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
             </li>
