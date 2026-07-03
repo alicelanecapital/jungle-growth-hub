@@ -1,29 +1,42 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { LandingView } from "@/components/jungle/landing/LandingView";
-import { DashboardView } from "@/components/jungle/dashboard/DashboardView";
-import { ViewSwitcher, type ViewMode } from "@/components/jungle/ViewSwitcher";
+import { SiteHeader } from "@/components/jungle/sections/SiteHeader";
+import { Hero } from "@/components/jungle/sections/Hero";
+import { WhyExists } from "@/components/jungle/sections/WhyExists";
+import { Partnership } from "@/components/jungle/sections/Partnership";
+import { HowItWorks } from "@/components/jungle/sections/HowItWorks";
+import { WhyEquityMatters } from "@/components/jungle/sections/WhyEquityMatters";
+import { Network } from "@/components/jungle/sections/Network";
+import { AreYouAFit } from "@/components/jungle/sections/AreYouAFit";
+import { JoinCta } from "@/components/jungle/sections/JoinCta";
+import { SiteFooter } from "@/components/jungle/sections/SiteFooter";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "The Jungle — The Peer Board for Main Street Businesses" },
-      { name: "description", content: "Affordable peer forums, operational templates, and a local board of advisors for South African MSMEs and SMEs." },
-      { property: "og:title", content: "The Jungle — The Peer Board for Main Street Businesses" },
-      { property: "og:description", content: "Affordable peer forums, operational templates, and a local board of advisors for South African MSMEs and SMEs." },
+      { title: "The Jungle — A curated founder ecosystem" },
+      { name: "description", content: "The Jungle is where promising early-stage founders find clarity, partnership, expertise and investment to build stronger businesses. Built by Alice Lane Capital." },
+      { property: "og:title", content: "The Jungle — A curated founder ecosystem" },
+      { property: "og:description", content: "Clarity, partnership, expertise and investment for early-stage founders. Built by Alice Lane Capital." },
     ],
   }),
   component: Index,
 });
 
 function Index() {
-  const [view, setView] = useState<ViewMode>("landing");
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="sticky top-0 z-40 flex justify-center border-b border-border/60 bg-background/85 px-4 py-3 backdrop-blur">
-        <ViewSwitcher value={view} onChange={setView} />
-      </div>
-      {view === "landing" ? <LandingView /> : <DashboardView />}
+      <SiteHeader />
+      <main>
+        <Hero />
+        <WhyExists />
+        <Partnership />
+        <HowItWorks />
+        <WhyEquityMatters />
+        <Network />
+        <AreYouAFit />
+        <JoinCta />
+      </main>
+      <SiteFooter />
     </div>
   );
 }
