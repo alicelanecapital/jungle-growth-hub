@@ -1,87 +1,66 @@
-## Reference-matched botanicals + darker cream + Canela-style typography
+# Botanicals as page composition + teal accent
 
-### 1. Illustration overhaul — replace SVGs with AI-generated engraved line art
+## 1. New accent color: light teal
 
-Generate a bespoke set of dense, cross-hatched line drawings in the style of the uploaded reference (fine ink linework on cream, wild but composed). Save to `src/assets/` as PNGs with transparent backgrounds so they sit on any section colour.
+Sampled from the uploaded swatch: **#ABD7D8** (soft) and **#BFD1D3** (dusty).
 
-Assets to generate (premium quality, `imagegen--generate_image`):
+In `src/styles.css`:
+- Add token `--accent-teal: oklch(0.86 0.035 200);` (≈ #ABD7D8) to `:root`.
+- Register in `@theme inline` as `--color-accent-teal: var(--accent-teal);`.
+- This exposes `text-accent-teal`, `bg-accent-teal`, `border-accent-teal`.
 
-- `hero-scene.png` (1600×1200, transparent) — the full reference scene reimagined: king protea, aloe with kniphofia spike, pincushion, silver tree, sunbird perched, springbok head-and-horns on the right. This becomes the hero right-column feature.
-- `divider-fynbos.png` (1920×520, transparent) — wide horizontal band: mixed proteas, pincushions, restio sprays, small blossom clusters. Used behind "How it works" and above the footer.
-- `divider-proteas.png` (1920×420, transparent) — three king proteas with foliage, dense linework, sitting on an implied baseline. Used under `Network`.
-- `accent-protea.png` (600×800, transparent) — single king protea sprig. Corner mark for `WhyExists` / `Partnership`.
-- `accent-pincushion.png` (600×800, transparent) — single leucospermum on a bent stem. Corner mark for `AreYouAFit`.
-- `accent-aloe.png` (600×800, transparent) — single aloe rosette with kniphofia. Corner mark for `WhyEquityMatters`.
-- `accent-sprig.png` (500×500, transparent) — small foliage cluster with berries. Used inline near section labels.
+Use it for **highlighted words inside headings/labels** only — not body copy, not buttons. Replace the current colored spans:
+- `Partnership.tsx`: `<span class="text-accent-green">founders.</span>` → `text-accent-teal`
+- `WhyEquityMatters.tsx`: `<span class="text-accent-red">accountability</span>` → `text-accent-teal`
+- `Hero.tsx`: wrap "grow." in `<span class="text-accent-teal">grow.</span>`
+- `AreYouAFit.tsx`: highlight "right for you" in H2 with `text-accent-teal`
+- `JoinCta.tsx`: highlight "hear it." in H2 with `text-accent-teal` (on dark bg this reads as a soft mist)
+- Section eyebrow numbers ("01 — Why", etc.): change the `01`/`02`/... digits to `text-accent-teal` (small, quiet, ties the labels together)
 
-Prompt spine (shared across generations for consistency):
+Retire `accent-green` / `accent-red` usage in these sections (tokens stay defined for now, unused).
 
-> Vintage engraved botanical line illustration, fine ink linework, tight cross-hatching for shading, no fills, sepia-black strokes on solid white background, hand-drawn scientific illustration style, dense wild composition with negative space above, no text, no frame, no watermark, style of 19th century botanical plates crossed with a modern editorial hero, ultra-detailed, museum-quality.
+## 2. Kill all botanical frames
 
-After each generation, QA by viewing the PNG and regenerate if strokes look pixelated, colored, or if unwanted text/labels appear.
+Remove every container that boxes a botanical: no rounded rectangles, no bordered wrappers, no fixed hero image column, no `overflow-hidden` picture frames. Every `<img>` becomes a free-floating decoration positioned absolutely against the section (or the page), sized generously, cropped by the viewport / section edge, and non-interactive (`pointer-events-none`, `aria-hidden`).
 
-### 2. Wire the assets into the existing components
+Global rules for every botanical placement:
+- `position: absolute` on the section (section stays `relative`), or `fixed` for one page-level piece.
+- Anchor to an edge with negative offsets so the art is cropped: e.g. `-top-24 -right-32`, `-bottom-40 -left-20`.
+- Size in viewport units so it feels page-scale, not card-scale: `w-[38vw]`, `w-[520px]` etc.
+- No borders, no rings, no rounded corners, no shadows, no background fills on the wrapper.
+- Low-opacity variants for behind-content usage: `opacity-[0.08]` to `opacity-20`; foreground accents: `opacity-70` to `opacity-95`.
+- Keep `DrawOnView` fade-in but drop any wrapper that implied a frame.
+- Section wrappers get `overflow-hidden` **only** where needed to crop cleanly at the section edge; otherwise let art bleed between sections.
 
-Keep the component filenames (`Protea.tsx`, `PalmFrond.tsx`, `MarulaBranch.tsx`, `Vine.tsx`, `RootSystem.tsx`, `LeafSprig.tsx`) so no section imports have to change. Each becomes a thin wrapper that renders an `<img>` of the matching asset with `loading="lazy"` and an `aria-hidden`. The `DrawOnView` wrapper switches from stroke-dashoffset to a fade+rise (opacity 0→1, translateY 12px→0, 900ms ease-out) since PNGs can't be stroke-animated. `prefers-reduced-motion` still short-circuits to instant reveal.
+### Per-section repositioning
 
-Mapping:
-- `Protea.tsx` → `accent-protea.png`
-- `PalmFrond.tsx` → `hero-scene.png` (asset now carries the whole hero scene; `Hero.tsx` will drop the separate `Protea` overlay and just render this)
-- `MarulaBranch.tsx` → `accent-aloe.png`
-- `Vine.tsx` → `divider-fynbos.png`
-- `RootSystem.tsx` → `divider-proteas.png`
-- `LeafSprig.tsx` → `accent-sprig.png`
+- **Hero** — Remove the two-column layout that reserves a right image slot. Text spans full width (or `max-w-3xl` left-aligned). `hero-scene.png` becomes a **single large decoration** anchored `absolute -right-[8vw] -bottom-[6vw] w-[62vw] opacity-90`, cropped by the section, sitting behind the CTA row. A second small `accent-sprig.png` emerges from the top-left corner at `-top-10 -left-8 w-40 opacity-60`.
+- **WhyExists** — Remove the right column pincushion frame. Place `accent-protea.png` `absolute -bottom-32 -right-16 w-[28vw] opacity-80`, cropped at section bottom so it bleeds into the next section. Add `divider-fynbos.png` as a background wash `absolute inset-x-0 bottom-0 h-40 w-full object-cover opacity-[0.12]`.
+- **Partnership** — Add `accent-aloe.png` emerging from the **left edge** `absolute -left-24 top-20 w-[22vw] opacity-70`, wrapping around the H2. A faint `accent-sprig.png` sits behind the paragraph column at `opacity-[0.09]`.
+- **HowItWorks** — Remove the framed vine strip. `divider-fynbos.png` becomes an **overlapping band** `absolute -top-16 left-0 right-0 h-56 object-cover object-bottom opacity-70`, spilling above the section border. Add `accent-pincushion.png` emerging from the **bottom-right** `absolute -bottom-24 -right-20 w-72 opacity-75`.
+- **WhyEquityMatters** — Center quote stays clean; add two very faint background botanicals: `accent-protea.png` `absolute -left-40 top-1/2 -translate-y-1/2 w-[36vw] opacity-[0.08]` and `accent-aloe.png` mirrored on the right at the same opacity. Pure atmospheric wash behind typography.
+- **Network** — Remove `RootSystem` centered image card. `divider-proteas.png` becomes a **bottom-bleed** `absolute -bottom-20 left-[-4vw] right-[-4vw] h-64 object-cover opacity-85`, cropped by the section bottom. Add `accent-sprig.png` emerging from the top-right `-top-10 right-8 w-40 opacity-70`.
+- **AreYouAFit** — Remove the pincushion in the right slot. Reposition `AccentPincushion` `absolute -top-16 -right-24 w-[26vw] opacity-80`. Add `accent-aloe.png` behind the checklist column `absolute -left-32 bottom-10 w-[24vw] opacity-[0.09]`.
+- **JoinCta** — Keep the inverted `MarulaBranch` but crop harder: `absolute -right-32 -top-16 w-[46vw] opacity-30`. Add a second inverted `accent-sprig.png` emerging from `-bottom-20 -left-20 w-64 opacity-25`.
 
-New: `AccentPincushion.tsx` (used in `AreYouAFit`) — the plan intentionally adds one new component rather than repurpose an existing one, because pincushion is a distinct silhouette from anything already placed.
+### Botanical component tweaks
 
-Section touch-ups to accommodate real illustration weight:
-- `Hero.tsx` — remove the layered PalmFrond+Protea composition; render `hero-scene.png` as a single image filling the right 5-column slot, bleeding to the top and right edge, opacity ~0.92 so it never overpowers the headline.
-- `HowItWorks.tsx` — swap the thin Vine for `divider-fynbos.png` above the six steps, height ~140px, `object-cover object-bottom` so only the tops of the plants show.
-- `Network.tsx` — replace `RootSystem` with `divider-proteas.png` underneath the expertise list.
-- `JoinCta.tsx` — swap the current MarulaBranch (dark section) for a white-inked variant: reuse `accent-aloe.png` with a CSS filter `invert(1) brightness(1.4)` at low opacity so it reads as pale line-art on midnight.
+No visual changes to the `<img>` wrappers themselves — they already carry only className/style. The frames were in the **section files**, so all edits happen there. `DrawOnView` still wraps each placement to keep the fade-and-rise entrance.
 
-### 3. Cream/section background → #F8F5F1
+## 3. Files touched
 
-Update `src/styles.css`:
-- `--surface-muted` (or `--muted` if that's the token in play) → `oklch(0.955 0.006 75)` which resolves visually to ~`#F8F5F1` (warmer, slightly deeper than the current off-white).
-- `--border` bumped one step darker to hold contrast against the new muted band: `oklch(0.87 0.006 70)`.
-- Double-check `bg-surface-muted` / `bg-muted` utility usage across sections — no code changes needed if tokens are already wired.
+- `src/styles.css` — add `--accent-teal` token + mapping.
+- `src/components/jungle/sections/Hero.tsx` — restructure to single-column text + edge-cropped background art.
+- `src/components/jungle/sections/WhyExists.tsx` — remove right column, add cropped protea + wash divider, teal digit in eyebrow.
+- `src/components/jungle/sections/Partnership.tsx` — add edge botanicals, swap `accent-green` → `accent-teal`.
+- `src/components/jungle/sections/HowItWorks.tsx` — turn vine into overlapping band, add pincushion, teal digit.
+- `src/components/jungle/sections/WhyEquityMatters.tsx` — atmospheric wash botanicals, swap `accent-red` → `accent-teal`.
+- `src/components/jungle/sections/Network.tsx` — bottom-bleed divider + corner sprig, teal digit.
+- `src/components/jungle/sections/AreYouAFit.tsx` — reposition pincushion, add background aloe, teal highlight in H2.
+- `src/components/jungle/sections/JoinCta.tsx` — tighter crop on marula, add second inverted sprig, teal highlight in H2.
 
-QA by loading `/` and comparing the `WhyExists`, `HowItWorks`, `Network` bands against the pure-white `Hero`, `Partnership`, `WhyEquityMatters`. The transition should be clearly perceptible but still quiet.
+## Out of scope
 
-### 4. Typography — Canela look-alike
-
-Canela isn't free. Closest free substitute with the same warm, wide, slightly-flared serif character is **Fraunces** (Google Fonts, variable, has an `opsz` axis that mimics Canela's optical sizes) with **Fraunces** for display and **Inter** kept for body.
-
-- Add `@fontsource-variable/fraunces` via `bun add`.
-- In `src/styles.css`, `@import "@fontsource-variable/fraunces";` at the top (with other imports).
-- Update `@theme` tokens: `--font-display: "Fraunces Variable", "Fraunces", Georgia, serif;`. Keep `--font-sans: "Inter Variable", "Inter", system-ui, sans-serif;` for body.
-- Set Fraunces axes on the display class in `styles.css`: `font-variation-settings: "opsz" 96, "SOFT" 30, "WONK" 0;` for hero-size headings, `"opsz" 24` for smaller display uses — captures Canela's editorial warmth without the license.
-- Retire `@fontsource/inter-tight` import and package (`bun remove @fontsource/inter-tight`). Keep `@fontsource-variable/inter` for body.
-- Verify every `font-display` usage still reads well; adjust letter-spacing (`tracking-[-0.02em]` may need to relax to `-0.01em` because Fraunces sets wider than Inter Tight).
-
-### Files
-
-**New**
-- `src/assets/hero-scene.png`
-- `src/assets/divider-fynbos.png`
-- `src/assets/divider-proteas.png`
-- `src/assets/accent-protea.png`
-- `src/assets/accent-pincushion.png`
-- `src/assets/accent-aloe.png`
-- `src/assets/accent-sprig.png`
-- `src/components/jungle/botanicals/AccentPincushion.tsx`
-
-**Rewritten** (thin `<img>` wrappers; same exports)
-- `src/components/jungle/botanicals/{Protea,PalmFrond,MarulaBranch,Vine,RootSystem,LeafSprig}.tsx`
-- `src/components/jungle/botanicals/DrawOnView.tsx` (fade+rise instead of stroke draw)
-
-**Edited**
-- `src/styles.css` (muted/border tokens, Fraunces import, display token, retire Inter Tight)
-- `src/components/jungle/sections/{Hero,HowItWorks,Network,JoinCta,AreYouAFit}.tsx` (asset placement + minor tracking tweaks)
-- `package.json` / `bun.lock` (add `@fontsource-variable/fraunces`, remove `@fontsource/inter-tight`)
-
-### Out of scope
-- Copy, section order, and routing untouched.
-- No commercial Canela files — if the user later provides them, swapping the `@font-face` is a one-line change.
-- No new content sections or new pages.
+- No new PNG generation — reuses the 7 existing assets.
+- No font/layout changes to the apply flow.
+- No changes to `botanicals/*.tsx` component internals.

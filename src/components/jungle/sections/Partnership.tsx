@@ -1,11 +1,19 @@
+import { MarulaBranch } from "../botanicals/MarulaBranch";
+import { LeafSprig } from "../botanicals/LeafSprig";
+import { DrawOnView } from "../botanicals/DrawOnView";
+
 export function Partnership() {
   return (
-    <section className="relative border-t border-border/70">
-      <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-16 px-6 py-40 sm:px-10 md:grid-cols-12">
+    <section className="relative overflow-hidden border-t border-border/70">
+      <DrawOnView className="pointer-events-none absolute -left-24 top-20 w-[22vw] min-w-[220px] max-w-[420px]">
+        <MarulaBranch className="h-auto w-full opacity-70" />
+      </DrawOnView>
+      <LeafSprig className="pointer-events-none absolute right-[8%] bottom-16 w-[24vw] max-w-[380px] opacity-[0.09]" />
+      <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 gap-16 px-6 py-40 sm:px-10 md:grid-cols-12">
         <div className="md:col-span-6">
-          <p className="mb-8 text-xs uppercase tracking-[0.28em] text-muted-foreground">02 &nbsp;— &nbsp; Partnership</p>
+          <p className="mb-8 text-xs uppercase tracking-[0.28em] text-muted-foreground"><span className="text-accent-teal">02</span> &nbsp;— &nbsp; Partnership</p>
           <h2 className="font-display text-[clamp(2.25rem,5vw,4.25rem)] font-medium leading-[1.02] tracking-[-0.025em]">
-            We build<br />alongside<br /><span className="text-accent-green">founders.</span>
+            We build<br />alongside<br /><span className="text-accent-teal">founders.</span>
           </h2>
         </div>
         <div className="md:col-span-5 md:col-start-8 md:pt-10">

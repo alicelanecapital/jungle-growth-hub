@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { AccentPincushion } from "../botanicals/AccentPincushion";
+import { MarulaBranch } from "../botanicals/MarulaBranch";
 import { DrawOnView } from "../botanicals/DrawOnView";
 
 const items = [
@@ -17,17 +18,18 @@ export function AreYouAFit() {
   const toggle = (i: number) => setChecked((prev) => prev.map((v, idx) => (idx === i ? !v : v)));
 
   return (
-    <section className="relative border-t border-border/70">
+    <section className="relative overflow-hidden border-t border-border/70">
+      <DrawOnView className="pointer-events-none absolute -top-16 -right-24 w-[26vw] min-w-[240px] max-w-[500px]">
+        <AccentPincushion className="h-auto w-full opacity-80" />
+      </DrawOnView>
+      <MarulaBranch className="pointer-events-none absolute -left-32 bottom-10 w-[24vw] max-w-[420px] opacity-[0.09]" />
       <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 gap-16 px-6 py-40 sm:px-10 md:grid-cols-12">
-        <DrawOnView className="pointer-events-none absolute right-6 top-24 hidden md:block">
-          <AccentPincushion className="h-[420px] w-auto opacity-85" />
-        </DrawOnView>
         <div className="md:col-span-2">
-          <p className="text-xs uppercase tracking-[0.28em] text-muted-foreground">06 &nbsp;— &nbsp; Fit</p>
+          <p className="text-xs uppercase tracking-[0.28em] text-muted-foreground"><span className="text-accent-teal">06</span> &nbsp;— &nbsp; Fit</p>
         </div>
         <div className="md:col-span-9">
           <h2 className="font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.05] tracking-[-0.02em]">
-            Is The Jungle right for you?
+            Is The Jungle <span className="text-accent-teal">right for you?</span>
           </h2>
           <p className="mt-8 max-w-2xl text-[17px] leading-[1.75] text-foreground/85">
             The Jungle is designed for founders who are serious about building a business and open to partnership. We look for curiosity, resilience, coachability, integrity, and a willingness to build with others. We invest our time, our expertise, and — where there is strong alignment — our capital. In return, we ask founders to be committed to the journey.
