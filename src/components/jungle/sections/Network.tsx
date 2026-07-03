@@ -7,10 +7,10 @@ const expertise = ["Law", "Finance", "Marketing", "Sales", "Operations", "Techno
 export function Network() {
   return (
     <section id="network" className="relative overflow-hidden border-t border-border/70 bg-surface-muted">
-      <DrawOnView className="pointer-events-none absolute -top-10 right-8 w-40 md:w-52">
-        <LeafSprig className="h-auto w-full opacity-70" />
+      <DrawOnView className="pointer-events-none absolute -top-14 right-4 w-32 md:w-40">
+        <LeafSprig className="h-auto w-full opacity-20" />
       </DrawOnView>
-      <RootSystem className="pointer-events-none absolute -bottom-20 left-[-4vw] right-[-4vw] h-64 w-[108vw] object-cover opacity-85" />
+      <RootSystem className="pointer-events-none absolute -bottom-20 left-[-4vw] right-[-4vw] h-64 w-[108vw] object-cover opacity-25" />
       <div className="relative mx-auto max-w-[1400px] px-6 py-40 sm:px-10">
         <div className="grid grid-cols-1 gap-16 md:grid-cols-12">
           <div className="md:col-span-2">

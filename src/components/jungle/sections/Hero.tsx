@@ -6,11 +6,11 @@ import { DrawOnView } from "../botanicals/DrawOnView";
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <DrawOnView duration={1400} className="pointer-events-none absolute -bottom-[6vw] -right-[8vw] w-[62vw] max-w-[1100px]">
-        <PalmFrond className="h-auto w-full opacity-90" />
+      <DrawOnView duration={1400} className="pointer-events-none absolute -bottom-[10vw] -right-[14vw] w-[46vw] max-w-[820px]">
+        <PalmFrond className="h-auto w-full opacity-25" />
       </DrawOnView>
       <DrawOnView className="pointer-events-none absolute -left-8 -top-6 w-40 md:w-52">
-        <LeafSprig className="h-auto w-full opacity-60" />
+        <LeafSprig className="h-auto w-full opacity-20" />
       </DrawOnView>
       <div className="relative mx-auto max-w-[1400px] px-6 pt-24 pb-40 sm:px-10 md:pt-32">
         <div className="max-w-3xl">

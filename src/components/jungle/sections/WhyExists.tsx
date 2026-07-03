@@ -5,10 +5,10 @@ import { DrawOnView } from "../botanicals/DrawOnView";
 export function WhyExists() {
   return (
     <section id="why" className="relative overflow-hidden border-t border-border/70 bg-surface-muted">
-      <DrawOnView className="pointer-events-none absolute -bottom-32 -right-16 w-[28vw] min-w-[280px] max-w-[520px]">
-        <Protea className="h-auto w-full opacity-80" />
+      <DrawOnView className="pointer-events-none absolute -bottom-40 -right-24 w-[22vw] min-w-[220px] max-w-[420px]">
+        <Protea className="h-auto w-full opacity-20" />
       </DrawOnView>
-      <Vine className="pointer-events-none absolute inset-x-0 bottom-0 h-40 w-full object-cover opacity-[0.12]" />
+      <Vine className="pointer-events-none absolute inset-x-0 bottom-0 h-40 w-full object-cover opacity-[0.06]" />
       <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 gap-16 px-6 py-40 sm:px-10 md:grid-cols-12">
         <div className="md:col-span-2">
           <p className="text-xs uppercase tracking-[0.28em] text-muted-foreground"><span className="text-accent-teal">01</span> &nbsp;— &nbsp; Why</p>
