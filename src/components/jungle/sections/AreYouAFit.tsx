@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
+import { AccentPincushion } from "../botanicals/AccentPincushion";
+import { DrawOnView } from "../botanicals/DrawOnView";
 
 const items = [
   "I'm actively building an early-stage startup.",
@@ -16,7 +18,10 @@ export function AreYouAFit() {
 
   return (
     <section className="relative border-t border-border/70">
-      <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-16 px-6 py-40 sm:px-10 md:grid-cols-12">
+      <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 gap-16 px-6 py-40 sm:px-10 md:grid-cols-12">
+        <DrawOnView className="pointer-events-none absolute right-6 top-24 hidden md:block">
+          <AccentPincushion className="h-[420px] w-auto opacity-85" />
+        </DrawOnView>
         <div className="md:col-span-2">
           <p className="text-xs uppercase tracking-[0.28em] text-muted-foreground">06 &nbsp;— &nbsp; Fit</p>
         </div>

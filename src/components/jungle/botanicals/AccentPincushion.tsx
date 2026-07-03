@@ -1,6 +1,6 @@
-import src from "@/assets/accent-protea.png";
+import src from "@/assets/accent-pincushion.png";
 
-export function Protea({ className, style }: { className?: string; style?: React.CSSProperties }) {
+export function AccentPincushion({ className, style }: { className?: string; style?: React.CSSProperties }) {
   return (
     <img
       src={src}
